@@ -2,18 +2,28 @@
 <html>
 	<head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>Pet Supplies</title>
+		
+	<!-- Bootstrap & Styles -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" type="text/css" />
+	<link rel="stylesheet" href="app/webshop/assets/css/webshop.css" /> 
 	</head>
 	<body ng-app="WebShop">
-	
+		<div class="container">
+			<h1>Pet Supplies</h1>
+		</div>
 		<div class="container">
 		    <div ng-view></div>
 		</div>
+		
 		<!-- Angular -->
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-resource.js"></script>
     	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js"></script>
+    	<!-- Angular Routing -->
 		<script src="app/webshop/app.js"></script>
+		<!-- Angular UI -->
+		<script src="app/webshop/libs/ui-bootstrap-tpls-0.13.3.js"></script>
 		<!-- Angular Controllers -->
 		<script type="text/javascript" src="app/webshop/components/shop/shopController.js"></script>
 	</body>
