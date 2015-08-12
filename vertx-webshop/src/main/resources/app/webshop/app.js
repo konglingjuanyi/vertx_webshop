@@ -1,0 +1,9 @@
+var app = angular.module('WebShop', ['ngRoute']);
+app.config(['$routeProvider', function ($routeProvider) {
+    $routeProvider.
+    	when('/shop',{ 
+    		templateUrl: 'app/webshop/components/shop/shopView.html',
+    		controller: ShopController
+    	}).
+    	otherwise({redirectTo: '/shop'});
+}]);
