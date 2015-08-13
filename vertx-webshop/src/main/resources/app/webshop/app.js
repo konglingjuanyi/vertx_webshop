@@ -1,4 +1,4 @@
-var app = angular.module('WebShop', ['ngRoute', 'ui.bootstrap']);
+var app = angular.module('WebShop', ['ngRoute', 'ngResource', 'ui.bootstrap']);
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.
     	when('/shop',{ 
