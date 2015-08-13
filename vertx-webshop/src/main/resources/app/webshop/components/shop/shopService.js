@@ -9,3 +9,10 @@ app.factory('Products', function ($resource) {
         query: {method: 'GET', isArray: true}
     });
 });
+
+app.factory('Categories', function ($resource) {
+    return $resource('api/categories/:id', {},
+    {
+        query: {method: 'GET', isArray: true}
+    });
+});

@@ -19,6 +19,8 @@ public class WebVerticle extends AbstractVerticle {
 		productService = new ProductService();
 		//REST Routing
 		router.get("/api/products").handler(productService::getProducts);
+		router.get("/api/products/:categoryName").handler(productService::getProductsByCategory);
+		router.get("/api/categories").handler(productService::getCategories);
 		// Static Routing
 		router.get("/").handler(StaticHandler.create().setWebRoot(PATH).setIndexPage(WELCOME_PAGE));
 		router.get("/" + PATH + "/*").handler(StaticHandler.create().setWebRoot(PATH));
