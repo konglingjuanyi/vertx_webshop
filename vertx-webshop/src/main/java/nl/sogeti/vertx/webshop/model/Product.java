@@ -4,6 +4,7 @@ public class Product {
 	private String name;
 	private double price;
 	private String description;
+	private long id;
 	private Category category;
 	
 	public Product(String name, double price, String description, Category category){
@@ -43,5 +44,13 @@ public class Product {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 }

@@ -6,7 +6,9 @@
 app.factory('Products', function ($resource) {
     return $resource('api/products/:id', {},
     {
-        query: {method: 'GET', isArray: true}
+        query: {method: 'GET', isArray: true},
+        getByCategory : { method: 'GET', isArray: true, params: { categoryName: '@categoryName'} },
+        get: {method: 'GET'}
     });
 });
 
