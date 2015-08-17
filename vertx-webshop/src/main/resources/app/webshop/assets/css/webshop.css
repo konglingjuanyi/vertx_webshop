@@ -1,3 +1,8 @@
 h1 {
 	color: red;
 }
+
+.dropdown-menu#cart-dropdown {
+    min-width: 300px;
+    padding: 10px;
+}

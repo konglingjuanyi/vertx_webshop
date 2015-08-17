@@ -29,24 +29,20 @@
               <ul class="nav navbar-nav">
                 <!-- Nav links -->
               </ul>
-              <ul ng-controller="DropdownCtrl" class="nav navbar-nav navbar-right">
+              <ul ng-controller="NavbarCtrl" class="nav navbar-nav navbar-right">
                 <div class="btn-group" dropdown is-open="status.isopen">
-                  <a class="btn btn-default" dropdown-toggle ng-disabled="disabled">
+                  <a id="cart-button" class="btn btn-default" dropdown-toggle ng-disabled="disabled">
                     <i class="fa fa-shopping-cart fa-2x"></i> <i class="fa fa-caret-down"></i>
                   </a>
-                  <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
-                    <li role="menuitem"><a href="#">Action</a></li>
-                    <li role="menuitem"><a href="#">Another action</a></li>
-                    <li role="menuitem"><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li role="menuitem"><a href="#">Separated link</a></li>
+                  <ul class="dropdown-menu" id="cart-dropdown" aria-labelledby="cart-button">
+                    <li><cd-cart></cd-cart></li> 
                   </ul>
                 </div>
               </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
         </nav>
-		<div class="container">
+		<div class="container-fluid">
 		    <div ng-view></div>
 		</div>
 		
@@ -64,7 +60,11 @@
 		<script src="app/webshop/components/shop/shopController.js"></script>
         <!-- Angular Services -->
         <script src="app/webshop/components/shop/shopService.js"></script>
+        <script src="app/webshop/shared/cart/cartService.js"></script>
         <!-- Angular Directives -->
         <script src="app/webshop/shared/product/product.js"></script>
+        <script src="app/webshop/shared/cart/cart.js"></script>
+        <script src="app/webshop/shared/cart/cartProduct.js"></script>
+        
 	</body>
 </html>

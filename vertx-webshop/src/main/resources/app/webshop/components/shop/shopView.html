@@ -5,11 +5,12 @@
             <h3><a ng-click="getProducts(category.name)">{{ category.name }}</a></h3>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-9">
         <h2>Our products</h2>
-
-        <div ng-repeat="product in products">
-            <cd-product info="product"></cd-product>
-        </div>
+        <div class="row">
+            <div class="col-md-4" ng-repeat="product in products">
+                <cd-product info="product"></cd-product>
+            </div>
+        </div>    
     </div>        
 </div>

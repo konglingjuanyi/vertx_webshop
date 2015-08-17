@@ -8,8 +8,10 @@ app.config(['$routeProvider', function ($routeProvider) {
     	otherwise({redirectTo: '/shop'});
 }]);
 
-app.controller('DropdownCtrl', function ($scope, $log) {
+app.controller('NavbarCtrl', function ($scope, ShoppingCart) {
   $scope.status = {
     isopen: false
   };
+  
+  $scope.cartProducts = ShoppingCart.cartProducts;
 });

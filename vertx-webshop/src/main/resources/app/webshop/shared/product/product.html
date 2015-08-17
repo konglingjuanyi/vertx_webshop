@@ -1,10 +1,7 @@
 <div>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <h3>{{ product.name }}</h3>
-        </div>
-        <div class="col-md-4">
-            <h3>{{ product.price | currency }}</h3>
         </div>
     </div>
     <div class="row">
@@ -13,8 +10,11 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-2 col-md-offset-8">
-            <a class="btn btn-success">
+        <div class="col-md-4">
+            <b>{{ product.price | currency }}</b>
+        </div>
+        <div class="col-md-2 col-md-offset-5">
+            <a class="btn btn-success" ng-click="addProduct(product)">
             	<i class="fa fa-cart-plus fa-2x"></i>
             </a>
         </div>
