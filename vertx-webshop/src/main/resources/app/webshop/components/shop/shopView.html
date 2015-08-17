@@ -1,8 +1,15 @@
-<div>
-	<h2>Our products</h2>
-    <div ng-repeat="product in products">
-        <h3>{{ product.name }}</h3>
-        <p>{{ product.description }}</p>
-        <em> {{ product.price | currency }} </em>
+<div class="row">
+    <div class="col-md-3">
+        <h2>Categories</h2>
+        <div ng-repeat="category in categories">
+            <h3><a ng-click="getProducts(category.name)">{{ category.name }}</a></h3>
+        </div>
     </div>
+    <div class="col-md-6">
+        <h2>Our products</h2>
+
+        <div ng-repeat="product in products">
+            <cd-product info="product"></cd-product>
+        </div>
+    </div>        
 </div>
