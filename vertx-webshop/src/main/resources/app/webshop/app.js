@@ -7,3 +7,9 @@ app.config(['$routeProvider', function ($routeProvider) {
     	}).
     	otherwise({redirectTo: '/shop'});
 }]);
+
+app.controller('DropdownCtrl', function ($scope, $log) {
+  $scope.status = {
+    isopen: false
+  };
+});
