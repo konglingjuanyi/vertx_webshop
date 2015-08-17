@@ -30,11 +30,4 @@ public class ProductService {
 		}
 		
 	}
-	
-	public void getCategories(RoutingContext rc){
-		repository.getCategories(result -> {
-			 String jsonCategories = new Gson().toJson(result);
-			 rc.response().end(jsonCategories);
-		});
-	}
 }

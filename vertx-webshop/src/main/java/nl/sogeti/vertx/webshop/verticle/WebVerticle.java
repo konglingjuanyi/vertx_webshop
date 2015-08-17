@@ -5,7 +5,9 @@ import io.vertx.core.http.HttpServer;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.mongo.MongoClient;
 import io.vertx.ext.web.Router;
+import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.StaticHandler;
+import nl.sogeti.vertx.webshop.service.CategoryService;
 import nl.sogeti.vertx.webshop.service.ProductService;
 
 public class WebVerticle extends AbstractVerticle {
@@ -14,11 +16,12 @@ public class WebVerticle extends AbstractVerticle {
 	private static final String WELCOME_PAGE = "index.html";
 	
 	private ProductService productService;
+	private CategoryService categoryService;
 	private HttpServer server;
 	@Override
 	public void start() {
 		MongoClient mongo = MongoClient.createShared(vertx, new JsonObject());
-		productService = new ProductService(mongo);	
+		registerServices(mongo);
 		createServer();
 	}
 	@Override
@@ -29,6 +32,11 @@ public class WebVerticle extends AbstractVerticle {
 		}
 	}
 	
+	private void registerServices(MongoClient mongo){
+		productService = new ProductService(mongo);	
+		categoryService = new CategoryService(mongo);
+	}
+	
 	private void createServer(){
 		server = vertx.createHttpServer();
 		server.requestHandler(createRouter()::accept).listen(PORT);
@@ -37,6 +45,7 @@ public class WebVerticle extends AbstractVerticle {
 	
 	private Router createRouter(){
 		Router router = Router.router(vertx);
+		router.route().handler(BodyHandler.create());
 		router.mountSubRouter("/api", createRestRouter());
 		router.get("/").handler(StaticHandler.create().setWebRoot(PATH).setIndexPage(WELCOME_PAGE));
 		router.get("/" + PATH + "/*").handler(StaticHandler.create().setWebRoot(PATH));
@@ -46,7 +55,7 @@ public class WebVerticle extends AbstractVerticle {
 	private Router createRestRouter(){
 		Router router = Router.router(vertx);
 		router.get("/products").handler(productService::getProducts);
-		router.get("/categories").handler(productService::getCategories);
+		router.get("/categories").handler(categoryService::getCategories);
 		return router;
 	}
 }
