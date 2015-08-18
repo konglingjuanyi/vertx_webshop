@@ -1,10 +1,13 @@
 <div>
     <div class="row">
         <div class="col-md-6">
-            <a>{{ cartProduct.name }}</a>
+            <a>{{ cartProduct.product.name }}</a>
+        </div>
+        <div class="col-md-2">
+            <p>{{ cartProduct.amount }}</p>
         </div>
         <div class="col-md-4">
-            <b>{{ cartProduct.price | currency }}</b>
+            <b>{{ cartProduct.product.price | currency }}</b>
         </div>
     </div>
 </div>
