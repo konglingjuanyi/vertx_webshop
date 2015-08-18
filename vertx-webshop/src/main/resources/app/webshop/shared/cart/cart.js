@@ -1,4 +1,4 @@
-app.directive('cdCart', ['ShoppingCart', function(ShoppingCart){
+app.directive('cdCart', ['ShoppingCart', 'Orders', function(ShoppingCart, Orders){
     return {
         restrict: 'E',
         scope: {
@@ -6,6 +6,11 @@ app.directive('cdCart', ['ShoppingCart', function(ShoppingCart){
         templateUrl: 'app/webshop/shared/cart/cart.html',
         link: function(scope, element, attrs){
             scope.shoppingCart = ShoppingCart;
+            scope.placeOrder = function(){
+                var order = {};
+                order.orderedProducts = ShoppingCart.products;
+                Orders.save(order);
+            }
         }
     };
 }]);

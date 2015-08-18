@@ -17,6 +17,7 @@ public class OrderService {
 	
 	public void addOrder(RoutingContext rc){
 		Order order = new Gson().fromJson(rc.getBodyAsJson().toString(), Order.class);
+		order.getTotal();
 		repository.addOrder(order);
 	}
 }

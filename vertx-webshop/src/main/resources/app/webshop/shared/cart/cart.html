@@ -5,9 +5,14 @@
     <div class="row">
         <hr class="col-md-12"></hr>
     </div<
-    <div>
+    <div class="row">
         <div class="col-md-6 col-md-offset-6">
             <b>Total: {{ shoppingCart.total | currency }}</b>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 col-md-offset-7">
+            <button ng-click="placeOrder()" class="btn-lg btn-success">Order</button>
         </div>
     </div>
 </div>
