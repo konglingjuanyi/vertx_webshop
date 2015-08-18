@@ -10,6 +10,7 @@ app.directive('cdCart', ['ShoppingCart', 'Orders', function(ShoppingCart, Orders
                 var order = {};
                 order.orderedProducts = ShoppingCart.products;
                 Orders.save(order);
+                ShoppingCart.clear();
             }
         }
     };

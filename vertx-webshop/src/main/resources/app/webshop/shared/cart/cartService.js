@@ -39,6 +39,11 @@ app.factory('ShoppingCart', function(){
                 total += this.products[index].total;
             }
             this.total = total;
+        },
+        
+        clear: function(){
+            this.total = 0;
+            this.products = [];
         }
     }
 });
