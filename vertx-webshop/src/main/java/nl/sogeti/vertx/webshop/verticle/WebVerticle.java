@@ -8,6 +8,7 @@ import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.StaticHandler;
 import nl.sogeti.vertx.webshop.service.CategoryService;
+import nl.sogeti.vertx.webshop.service.OrderService;
 import nl.sogeti.vertx.webshop.service.ProductService;
 
 public class WebVerticle extends AbstractVerticle {
@@ -17,7 +18,10 @@ public class WebVerticle extends AbstractVerticle {
 	
 	private ProductService productService;
 	private CategoryService categoryService;
+	private OrderService orderService;
+	
 	private HttpServer server;
+	
 	@Override
 	public void start() {
 		MongoClient mongo = MongoClient.createShared(vertx, new JsonObject());
@@ -35,6 +39,7 @@ public class WebVerticle extends AbstractVerticle {
 	private void registerServices(MongoClient mongo){
 		productService = new ProductService(mongo);	
 		categoryService = new CategoryService(mongo);
+		orderService = new OrderService(mongo);
 	}
 	
 	private void createServer(){
@@ -54,6 +59,7 @@ public class WebVerticle extends AbstractVerticle {
 	
 	private Router createRestRouter(){
 		Router router = Router.router(vertx);
+		router.post("/orders").handler(orderService::addOrder);
 		router.get("/products").handler(productService::getProducts);
 		router.get("/categories").handler(categoryService::getCategories);
 		return router;
