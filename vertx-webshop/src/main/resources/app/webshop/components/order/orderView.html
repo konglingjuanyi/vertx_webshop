@@ -1,0 +1,17 @@
+<div>
+    <div class="row" ng-repeat="product in shoppingCart.products">
+        <div class="col-md-8 col-md-offset-2">
+            <cd-cart-product info="product"></cd-product>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-7">
+            <b>Total: {{ shoppingCart.total | currency }}</b>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-md-offset-7">
+             <a class="btn-lg btn-success" ng-click="placeOrder()">Confirm Order</a>
+        </div>
+    </div>
+</div>

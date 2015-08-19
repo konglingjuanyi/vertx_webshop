@@ -6,3 +6,9 @@ h1 {
     min-width: 300px;
     padding: 10px;
 }
+a.btn-lg {
+    display: inline-block;
+}
+a.btn {
+    display: inline-block;
+}

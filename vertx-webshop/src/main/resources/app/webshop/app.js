@@ -1,7 +1,11 @@
-var app = angular.module('WebShop', ['ngRoute', 'ngResource', 'ui.bootstrap']);
+var app = angular.module('WebShop', ['ngRoute', 'ngAnimate', 'ngResource', 'ui.bootstrap']);
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.
-    	when('/shop',{ 
+        when('/order', {
+            templateUrl: 'app/webshop/components/order/orderView.html',
+    		controller: OrderController
+        }).
+        when('/shop',{ 
     		templateUrl: 'app/webshop/components/shop/shopView.html',
     		controller: ShopController
     	}).

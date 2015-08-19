@@ -27,7 +27,7 @@ app.factory('ShoppingCart', function(){
             this.calculateTotal();
         },
 
-        removeProduct: function(index){
+        removeProduct: function(product){
             //TODO
             //Remove the item
             //Subtract the item's costs

@@ -1,0 +1,24 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{ product.name }} is added to your cart!</h3>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <p>Your cart now contains {{ shoppingCart.products.length }} product(s).</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 ">
+            <cd-cart></cd-cart>
+        </div>
+    </div>
+    <!--<div class="row">
+        <div class="col-md-2 col-md-offset-10">
+            <a class="btn btn-success" href="">Order</a>
+        </div>
+    </div>-->
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>
