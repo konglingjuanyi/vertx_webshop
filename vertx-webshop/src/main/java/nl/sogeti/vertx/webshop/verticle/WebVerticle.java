@@ -10,6 +10,7 @@ import io.vertx.ext.web.handler.StaticHandler;
 import nl.sogeti.vertx.webshop.service.CategoryService;
 import nl.sogeti.vertx.webshop.service.OrderService;
 import nl.sogeti.vertx.webshop.service.ProductService;
+import nl.sogeti.vertx.webshop.service.UserService;
 
 public class WebVerticle extends AbstractVerticle {
 	private static final int PORT = 8080;
@@ -19,6 +20,7 @@ public class WebVerticle extends AbstractVerticle {
 	private ProductService productService;
 	private CategoryService categoryService;
 	private OrderService orderService;
+	private UserService userService;
 	
 	private HttpServer server;
 	
@@ -40,6 +42,7 @@ public class WebVerticle extends AbstractVerticle {
 		productService = new ProductService(mongo);	
 		categoryService = new CategoryService(mongo);
 		orderService = new OrderService(mongo);
+		userService = new UserService(mongo);
 	}
 	
 	private void createServer(){
@@ -59,6 +62,7 @@ public class WebVerticle extends AbstractVerticle {
 	
 	private Router createRestRouter(){
 		Router router = Router.router(vertx);
+		router.post("/users").handler(userService::addUser);
 		router.post("/orders").handler(orderService::addOrder);
 		router.get("/products").handler(productService::getProducts);
 		router.get("/categories").handler(categoryService::getCategories);

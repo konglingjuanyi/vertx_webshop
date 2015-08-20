@@ -1,6 +1,12 @@
 var app = angular.module('WebShop', ['ngRoute', 'ngAnimate', 'ngResource', 'ui.bootstrap']);
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.
+        when('/register', {
+            templateUrl: 'app/webshop/components/register/registerView.html'
+        }).
+        when('/login', {
+            templateUrl: 'app/webshop/components/login/loginView.html'
+        }).     
         when('/order', {
             templateUrl: 'app/webshop/components/order/orderView.html',
     		controller: OrderController

@@ -7,7 +7,7 @@ import io.vertx.ext.mongo.MongoClient;
 import nl.sogeti.vertx.webshop.model.Order;
 
 public class MongoOrderRepository implements IOrderRepository {
-	private final String ORDER = "ORDER";
+	private final String ORDER = "order";
 	private final MongoClient mongo;
 	
 	public MongoOrderRepository(MongoClient mongo) {

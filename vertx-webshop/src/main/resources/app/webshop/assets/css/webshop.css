@@ -12,3 +12,8 @@ a.btn-lg {
 a.btn {
     display: inline-block;
 }
+
+#navlink {
+    display: inline-block;
+    margin-top: 15px;
+}
