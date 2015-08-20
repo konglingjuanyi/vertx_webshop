@@ -21,32 +21,29 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">Pet Supplies</a>
+              <a class="navbar-brand" href="#/">Pet Supplies</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
                 <!-- Nav links -->
+                <li><a href="#/shop">Shop</a></li>  
               </ul>
-              <ul ng-controller="DropdownCtrl" class="nav navbar-nav navbar-right">
-                <div class="btn-group" dropdown is-open="status.isopen">
-                  <a class="btn btn-default" dropdown-toggle ng-disabled="disabled">
+              <ul ng-controller="NavbarCtrl" class="nav navbar-nav navbar-right">
+                <div class="btn-group" auto-close="outsideClick" dropdown>
+                  <button id="single-button" class="btn btn-default" dropdown-toggle >
                     <i class="fa fa-shopping-cart fa-2x"></i> <i class="fa fa-caret-down"></i>
-                  </a>
-                  <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
-                    <li role="menuitem"><a href="#">Action</a></li>
-                    <li role="menuitem"><a href="#">Another action</a></li>
-                    <li role="menuitem"><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li role="menuitem"><a href="#">Separated link</a></li>
+                  </button>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="single-button" id="cart-dropdown">
+                    <li><cd-cart></cd-cart></li> 
                   </ul>
                 </div>
               </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
         </nav>
-		<div class="container">
+		<div class="container-fluid">
 		    <div ng-view></div>
 		</div>
 		
@@ -54,6 +51,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-resource.js"></script>
     	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script>
         <!-- Angular i18n -->
         <script src="https://code.angularjs.org/1.4.3/i18n/angular-locale_nl-nl.js"></script>
     	<!-- Angular Routing -->
@@ -62,9 +60,16 @@
 		<script src="app/webshop/libs/ui-bootstrap-tpls-0.13.3.js"></script>
 		<!-- Angular Controllers -->
 		<script src="app/webshop/components/shop/shopController.js"></script>
+        <script src="app/webshop/components/order/orderController.js"></script>
+        <script src="app/webshop/shared/product/productModalController.js"></script>
         <!-- Angular Services -->
         <script src="app/webshop/components/shop/shopService.js"></script>
+        <script src="app/webshop/components/order/orderService.js"></script>
+        <script src="app/webshop/shared/cart/cartService.js"></script>
         <!-- Angular Directives -->
         <script src="app/webshop/shared/product/product.js"></script>
+        <script src="app/webshop/shared/cart/cart.js"></script>
+        <script src="app/webshop/shared/cart/cartProduct.js"></script>
+        
 	</body>
 </html>

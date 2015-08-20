@@ -12,8 +12,8 @@ import nl.sogeti.vertx.webshop.model.Category;
 
 public class MongoCategoryRepository implements ICategoryRepository {
 
-	private MongoClient mongo;
-	private String CATEGORY = "category";
+	private final MongoClient mongo;
+	private final String CATEGORY = "category";
 
 	public MongoCategoryRepository(MongoClient mongo){
 		this.mongo = mongo;
