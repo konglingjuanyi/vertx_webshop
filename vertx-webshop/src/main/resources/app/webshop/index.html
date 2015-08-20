@@ -31,11 +31,11 @@
                 <li><a href="#/shop">Shop</a></li>  
               </ul>
               <ul ng-controller="NavbarCtrl" class="nav navbar-nav navbar-right">
-                <div class="btn-group" auto-close="outsideClick" dropdown>
-                  <button id="single-button" class="btn btn-default" dropdown-toggle >
+                <div class="btn-group" dropdown is-open="status.isopen">
+                  <a id="cart-button" class="btn btn-default" dropdown-toggle ng-disabled="disabled">
                     <i class="fa fa-shopping-cart fa-2x"></i> <i class="fa fa-caret-down"></i>
-                  </button>
-                  <ul class="dropdown-menu" role="menu" aria-labelledby="single-button" id="cart-dropdown">
+                  </a>
+                  <ul class="dropdown-menu" id="cart-dropdown" aria-labelledby="cart-button">
                     <li><cd-cart></cd-cart></li> 
                   </ul>
                 </div>

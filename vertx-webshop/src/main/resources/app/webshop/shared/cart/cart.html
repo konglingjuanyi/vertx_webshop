@@ -1,11 +1,6 @@
 <div ng-hide="shoppingCart.products.length <= 0">
-    <div class="row" ng-repeat="product in shoppingCart.products">
-        <div class="col-md-8">
-            <cd-cart-product info="product"></cd-cart-product>
-        </div>
-        <div class="col-md-1">
-            <a class="btn btn-danger" ng-click="shoppingCart.removeProduct($index)"><i class="fa fa-times"></i></a>
-        </div>
+    <div ng-repeat="product in shoppingCart.products">
+        <cd-cart-product info="product"></cd-cart-product>
     </div>
     <div class="row">
         <div class="col-md-12">
