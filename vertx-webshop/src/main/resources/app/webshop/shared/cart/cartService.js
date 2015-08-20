@@ -4,33 +4,36 @@ app.factory('ShoppingCart', function(){
 
         total: 0,
 
-        addProduct: function(product){
+        addProduct: function(theProduct){
             //Check if the product is already in the cart, if it is the amount is increased
             var productExists = false;
-            var cartProduct = {};
-            for(index = 0; index < this.products.length; index++){
-              if(this.products[index].product === product){
-                productExists = true;
-                cartProduct = this.products[index]; 
-                cartProduct.amount++;
-                break;
-              }
-            }
+            var cartProduct;
+            var index = this.findProduct(theProduct);
             //If the cart item does not exist, add it, and add it to the collection
-            if(!productExists){
-                cartProduct.product = product;
-                cartProduct.amount = 1;
+            if(index === -1){
+                cartProduct = {
+                    product: theProduct,
+                    amount: 1
+                };
                 this.products.push(cartProduct);   
             }
-            cartProduct.total = cartProduct.amount * cartProduct.product.price;
-            //Update the total cart value
-            this.calculateTotal();
+            //If it does exist, only increase the amount
+            else{
+                cartProduct = this.products[index];
+                cartProduct.amount++;
+            }
+            //Calculate the cartproduct total
+            this.calculateCartProductTotal(cartProduct);
         },
 
-        removeProduct: function(product){
-            //TODO
-            //Remove the item
-            //Subtract the item's costs
+        removeProduct: function(index){
+            this.products.splice(index, 1);
+            this.calculateTotal();
+        },
+        
+        calculateCartProductTotal: function(product){
+            product.total = product.product.price * product.amount;
+            this.calculateTotal();
         },
         
         calculateTotal: function(){
@@ -44,6 +47,17 @@ app.factory('ShoppingCart', function(){
         clear: function(){
             this.total = 0;
             this.products = [];
+        },
+        
+        findProduct: function(product){
+            var index = -1;
+            for(i = 0; i < this.products.length; i++){
+              if(this.products[i].product === product){
+                index = i;
+                break;  
+              }
+            }
+            return index;
         }
     }
 });
