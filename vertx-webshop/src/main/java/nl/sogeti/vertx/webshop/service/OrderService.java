@@ -17,6 +17,11 @@ public class OrderService {
 	
 	public void addOrder(RoutingContext rc){
 		Order order = new Gson().fromJson(rc.getBodyAsJson().toString(), Order.class);
-		repository.addOrder(order);
+		repository.addOrder(result -> {
+			//The operation returned an id and thus it succeeded
+			if(result != null){
+				rc.response().setStatusCode(200).end();
+			}
+		}, order);
 	}
 }

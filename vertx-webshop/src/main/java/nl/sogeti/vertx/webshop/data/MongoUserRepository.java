@@ -9,6 +9,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.mongo.MongoClient;
 import nl.sogeti.vertx.webshop.model.User;
+import nl.sogeti.vertx.webshop.util.JsonConverter;
 
 public class MongoUserRepository implements IUserRepository {
 	private final MongoClient mongo;
@@ -19,7 +20,7 @@ public class MongoUserRepository implements IUserRepository {
 	}
 	
 	@Override
-	public void addUser(User user) {
+	public void addUser(Handler<String> handler, User user) {
 		String json = new Gson().toJson(user);
 		JsonObject document = new JsonObject(json);
 		
@@ -28,8 +29,7 @@ public class MongoUserRepository implements IUserRepository {
 			//Check if the username already exists
 			
 			if (res.succeeded()) {
-			    String id = res.result();
-			    System.out.println("Inserted user with id " + id);
+			   handler.handle(res.result());
 			} 
 			else {
 				res.cause().printStackTrace();
@@ -58,11 +58,7 @@ public class MongoUserRepository implements IUserRepository {
 			if(result.failed()){
 				//error handling
 			}
-			List<User> lookupResults = new ArrayList<User>();
-	        for (JsonObject o : result.result()) {
-	        	User user = new Gson().fromJson(o.toString(), User.class);
-	        	lookupResults.add(user);
-	        }
+			List<User> lookupResults = JsonConverter.fromJsonList(result.result(), User.class);
 	        handler.handle(lookupResults);
 		});
 	}

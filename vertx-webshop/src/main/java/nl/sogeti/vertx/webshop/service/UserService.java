@@ -17,6 +17,14 @@ public class UserService {
 	
 	public void addUser(RoutingContext rc){
 		User user = new Gson().fromJson(rc.getBodyAsJson().toString(), User.class);
-		repository.addUser(user);
+		repository.addUser(result ->{
+			if(result != null){
+				rc.response().setStatusCode(200).end();
+			}
+			else{
+				//This is a result of the username not being unique, return 409:CONFLICT
+				rc.response().setStatusCode(409);
+			}
+		}, user);
 	}
 }
