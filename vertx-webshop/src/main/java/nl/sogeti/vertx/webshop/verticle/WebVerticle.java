@@ -62,6 +62,7 @@ public class WebVerticle extends AbstractVerticle {
 	
 	private Router createRestRouter(){
 		Router router = Router.router(vertx);
+		router.get("/users/*").handler(userService::findUser);
 		router.post("/users").handler(userService::addUser);
 		router.post("/orders").handler(orderService::addOrder);
 		router.get("/products").handler(productService::getProducts);

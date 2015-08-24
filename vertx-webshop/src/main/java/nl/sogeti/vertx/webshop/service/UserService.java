@@ -27,4 +27,16 @@ public class UserService {
 			}
 		}, user);
 	}
+	
+	public void findUser(RoutingContext rc){
+		String userName = rc.request().getParam("username");
+		repository.findUser(result -> {
+			if(result != null){
+				rc.response().end(new Gson().toJson(result));
+			}
+			else{
+				rc.response().setStatusCode(404).end();
+			}
+		}, userName);
+	}
 }
