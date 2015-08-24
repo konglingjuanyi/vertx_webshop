@@ -17,11 +17,6 @@
             <b>Total: {{ shoppingCart.total | currency }}</b>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-2 col-md-offset-7">
-            <a ng-href="#/order" class="btn-lg btn-success">Order</a>
-        </div>
-    </div>
 </div>
 <div class="row" ng-hide="shoppingCart.products.length > 0">
     <div class="col-md-12">

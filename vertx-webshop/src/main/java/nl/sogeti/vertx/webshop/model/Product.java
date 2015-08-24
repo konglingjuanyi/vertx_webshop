@@ -1,15 +1,17 @@
 package nl.sogeti.vertx.webshop.model;
 
+import java.math.BigDecimal;
+
 public class Product {
 	private String name;
-	private double price;
+	private BigDecimal price;
 	private String description;
 	private long id;
 	private Category category;
 	
 	public Product(String name, double price, String description, Category category){
 		this.name = name;
-		this.price = price;
+		setPrice(price);
 		this.description = description;
 		this.category = category;
 	}
@@ -22,12 +24,14 @@ public class Product {
 		this.name = name;
 	}
 
-	public double getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
 	public void setPrice(double price) {
-		this.price = price;
+		BigDecimal thePrice = new BigDecimal(price);
+		thePrice.setScale(2, BigDecimal.ROUND_HALF_UP);
+		this.price = thePrice;
 	}
 
 	public String getDescription() {

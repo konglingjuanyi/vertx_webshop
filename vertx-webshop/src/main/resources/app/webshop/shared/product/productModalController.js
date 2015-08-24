@@ -1,6 +1,11 @@
-app.controller('ProductModalController', function ($scope, $modalInstance, product, ShoppingCart) {
+app.controller('ProductModalController', function ($scope, $modalInstance, $location, product, ShoppingCart) {
     $scope.product = product;
     $scope.shoppingCart = ShoppingCart;
+    
+    $scope.order = function(){
+        $location.path('/order');
+        $modalInstance.close();
+    }
     
     $scope.ok = function () {
         $modalInstance.close();

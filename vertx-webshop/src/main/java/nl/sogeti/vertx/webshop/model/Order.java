@@ -1,20 +1,19 @@
 package nl.sogeti.vertx.webshop.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
-	private double total;
+	private BigDecimal total;
 	private List<OrderProduct> orderedProducts;
 	
 	public Order(){
 		orderedProducts = new ArrayList<OrderProduct>();
+		calculateTotal();
 	}
 	
-	public double getTotal(){
-		if(total == 0){
-			total = calculateTotal();
-		}
+	public BigDecimal getTotal(){
 		return total;
 	}
 	
@@ -22,19 +21,12 @@ public class Order {
 		return orderedProducts;
 	}
 
-	public void setOrderedProducts(List<OrderProduct> orderedProducts) {
-		this.orderedProducts = orderedProducts;
-	}
-
-	public void setTotal(double total) {
-		this.total = total;
-	}
-
-	private double calculateTotal(){
-		double price = 0;
+	private void calculateTotal(){
+		BigDecimal total = new BigDecimal(0.0);
+		total.setScale(2, BigDecimal.ROUND_HALF_UP);
 		for(OrderProduct orderedProduct : orderedProducts){
-			price += orderedProduct.getTotal();
+			total = total.multiply(orderedProduct.getTotal());
 		}
-		return price;
+		this.total = total;
 	}
 }

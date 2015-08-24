@@ -4,6 +4,7 @@ function OrderController($scope, $location, Orders, ShoppingCart){
     $scope.placeOrder = function(){
         var order = {};
         order.orderedProducts = ShoppingCart.products;
+        order.total = ShoppingCart.total;
         Orders.save(order);
         ShoppingCart.clear();
         alert("Added order");
