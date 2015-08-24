@@ -1,12 +1,59 @@
 <div>
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <input type="text" placeholder="Username" />
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <input type="text" placeholder="Username" />
-        </div>
-    </div>
+    <form ng-submit="saveUser()">
+        <fieldset>
+            <div class="row">
+                <div class="col-md-1 col-md-offset-4">
+                    <label for="userName">Username</label>
+                </div>
+                <div class="col-md-2">
+                    <input ng-model="user.userName" id="userName" class="form-control" type="text" placeholder="Username" autofocus required/>
+                </div>
+            </div>
+            <div class="row">
+                 <div class="col-md-1 col-md-offset-4">
+                    <label for="password">Password</label>
+                </div>
+                <div class="col-md-2">
+                    <input ng-model="user.password" id="password" class="form-control" type="password" placeholder="Password" required/>
+                </div>
+            </div>
+            <div class="row">
+                 <div class="col-md-1 col-md-offset-4">
+                    <label for="name">Naam</label>
+                </div>
+                <div class="col-md-2">
+                    <input ng-model="user.fullName" id="name" class="form-control" type="text" placeholder="Full name" required/>
+                </div>
+            </div>
+            <div class="row">
+                 <div class="col-md-1 col-md-offset-4">
+                    <label for="address">Address</label>
+                </div>
+                <div class="col-md-2">
+                    <input ng-model="user.address" id="address" class="form-control" type="text" placeholder="Address" required/>
+                </div>
+            </div>
+            <div class="row">
+                 <div class="col-md-1 col-md-offset-4">
+                    <label for="city">City</label>
+                </div>
+                <div class="col-md-2">
+                    <input ng-model="user.city" id="city" class="form-control" type="text" placeholder="City" required/>
+                </div>
+            </div>
+             <div class="row">
+                 <div class="col-md-1 col-md-offset-4">
+                    <label for="email">Email</label>
+                </div>
+                <div class="col-md-2">
+                    <input ng-model="user.email" id="email" class="form-control" type="email" placeholder="Email" required/>
+                </div>
+            </div>
+            <div class="row">
+            	<div class="col-md-2 col-md-offset-4">
+            		<button class="btn-lg btn-primary" type=submit>Register</button>
+            	</div>
+            </div>
+        </fieldset>
+    </form>
 </div>

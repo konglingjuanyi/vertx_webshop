@@ -25,6 +25,11 @@ app.factory('ShoppingCart', function(){
             //Calculate the cartproduct total
             this.calculateCartProductTotal(cartProduct);
         },
+        
+        remove: function(product){
+            var index = this.findProduct(product);
+            this.removeProduct(index);
+        },
 
         removeProduct: function(index){
             this.products.splice(index, 1);

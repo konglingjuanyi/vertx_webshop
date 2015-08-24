@@ -8,7 +8,7 @@ app.controller('ProductModalController', function ($scope, $modalInstance, produ
     
     //Removes the added product from the cartr
     $scope.cancel = function () {
-        ShoppingCart.removeProduct($scope.product);
+        ShoppingCart.remove($scope.product);
         $modalInstance.dismiss('cancel');
     };
 });
