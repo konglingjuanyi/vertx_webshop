@@ -32,10 +32,15 @@
                 <li><a href="#/shop">Shop</a></li>  
               </ul>
               <ul ng-controller="NavbarCtrl" class="nav navbar-nav navbar-right row">
-                <div class="col-md-4">
-                    <b><a id="navlink" href="#/login">Login</a></b>
+                <div class="col-md-6">
+                    <div ng-if="login.getUser() == null">
+                        <b><a id="navlink" href="#/login">Login</a></b>
+                    </div>
+                    <div class="nav-item" ng-if="login.getUser() != null">
+                        <b>{{login.getUser().fullName}}</b>
+                    </div>
                 </div>    
-                <div class="btn-group col-md-4 col-md-offset-2" auto-close="outsideClick" dropdown>
+                <div class="btn-group col-md-4" auto-close="outsideClick" dropdown>
                   <button id="single-button" class="btn btn-default" dropdown-toggle >
                     <i class="fa fa-shopping-cart fa-2x"></i> <i class="fa fa-caret-down"></i>
                   </button>
@@ -71,12 +76,14 @@
 		<script src="app/webshop/components/shop/shopController.js"></script>
         <script src="app/webshop/components/order/orderController.js"></script>
         <script src="app/webshop/components/order/orderModalController.js"></script>
+        <script src="app/webshop/components/login/loginController.js"></script>
         <script src="app/webshop/components/register/registerController.js"></script>
         <script src="app/webshop/components/register/registerModalController.js"></script>
         <script src="app/webshop/shared/product/productModalController.js"></script>
         <!-- Angular Services -->
         <script src="app/webshop/components/shop/shopService.js"></script>
         <script src="app/webshop/components/order/orderService.js"></script>
+        <script src="app/webshop/components/login/loginService.js"></script>
         <script src="app/webshop/shared/cart/cartService.js"></script>
         <script src="app/webshop/shared/user/userService.js"></script>
         <!-- Angular Directives -->
