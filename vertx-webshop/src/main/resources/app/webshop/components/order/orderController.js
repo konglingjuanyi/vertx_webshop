@@ -1,6 +1,11 @@
-function OrderController($scope, $location, $modal, Orders, ShoppingCart){
+function OrderController($scope, $location, $modal, Orders, ShoppingCart, Login){
     $scope.shoppingCart = ShoppingCart;
-    $scope.order;
+    $scope.order = {};
+    $scope.user = Login.getUser();
+    if($scope.user !== null){
+        $scope.order.shippingAddress = $scope.user.address;
+        $scope.order.shippingCity = $scope.user.city;
+    }
     
     $scope.placeOrder = function(){
         $scope.order.orderedProducts = ShoppingCart.products;

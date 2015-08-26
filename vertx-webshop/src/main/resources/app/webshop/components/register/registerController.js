@@ -1,4 +1,4 @@
-function RegisterController ($scope, $modal, Users){
+function RegisterController ($scope, $modal, Users, Login){
     $scope.user = { userName: null };
     $scope.available = false;
     $scope.checkAvailable = function(){
@@ -15,7 +15,8 @@ function RegisterController ($scope, $modal, Users){
         if($scope.available){
             Users.save($scope.user, 
                 function(){
-                //handle result codes, make session
+                    //handle result codes, make session
+                    Login.setUser($scope.user);
                     var modalInstance = $modal.open({
                         animation: true,
                         templateUrl: 'app/webshop/components/register/registerModal.html',

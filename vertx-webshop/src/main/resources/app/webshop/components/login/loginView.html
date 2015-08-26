@@ -30,7 +30,7 @@
                             <button ng-disabled="loginForm.$invalid" class="btn-lg btn-success" type="submit">Log in</button>
                         </div>
                     </div>
-                    <div ng-if="!loginSucceeded && loginForm.$submitted" class="row">
+                    <div ng-show="loginForm.$submitted && !loginSucceeded" class="row">
                         <div class="col-md-10">
                             <alert type="danger"><i class="fa fa-times"></i> Oops.. Either the username or password was incorrect.</alert>
                         </div>

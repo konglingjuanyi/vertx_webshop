@@ -1,6 +1,5 @@
 package nl.sogeti.vertx.webshop.data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -10,13 +9,14 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.ext.mongo.MongoClient;
 import nl.sogeti.vertx.webshop.model.User;
 import nl.sogeti.vertx.webshop.util.JsonConverter;
+import nl.sogeti.vertx.webshop.util.MongoClientProvider;
 
 public class MongoUserRepository implements IUserRepository {
 	private final MongoClient mongo;
 	private final String USER = "user";
 	
-	public MongoUserRepository(MongoClient mongo ) {
-		this.mongo = mongo;
+	public MongoUserRepository() {
+		this.mongo = MongoClientProvider.getClient();
 	}
 	
 	@Override

@@ -32,12 +32,12 @@
                 <li><a href="#/shop">Shop</a></li>  
               </ul>
               <ul ng-controller="NavbarCtrl" class="nav navbar-nav navbar-right row">
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <div ng-if="login.getUser() == null">
-                        <b><a id="navlink" href="#/login">Login</a></b>
+                        <p><a id="navlink" href="#/login">Login</a></p>
                     </div>
                     <div class="nav-item" ng-if="login.getUser() != null">
-                        <b>{{login.getUser().fullName}}</b>
+                        <p>{{login.getUser().fullName}}</p>
                     </div>
                 </div>    
                 <div class="btn-group col-md-4" auto-close="outsideClick" dropdown>

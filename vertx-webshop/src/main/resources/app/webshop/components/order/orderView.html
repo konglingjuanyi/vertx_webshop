@@ -33,15 +33,50 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3 col-md-offset-9">
-            <b>Total: {{ shoppingCart.total | currency }}</b>
+        <div class="col-md-8 col-md-offset-2">
+            <hr></hr>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-3 col-md-offset-9">
-             <a class="btn-lg btn-success" ng-click="placeOrder()">Confirm Order</a>
+    <!-- Shipping details -->
+    <form novalidate name="shippingForm" ng-submit="placeOrder()">
+        <div class="row">
+            <div class="col-md-3 col-md-offset-2">
+                <label for="address">Shipping address</label>
+            </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-md-3 col-md-offset-2">
+                <input class="form-control" ng-disabled="user != null" type="text" name="address" ng-model="order.shippingAddress" placeholder="E.g. Test ave. 16" required />
+            </div>
+            <div class="col-md-2" ng-if="(shippingForm.address.$touched || shippingForm.$submitted) && shippingForm.address.$error.required">
+                <alert type="danger"><i class="fa fa-times"></i> We need your address to send your order!</alert>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-md-offset-2">
+                <label for="city">City</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-md-offset-2">
+                <input class="form-control" ng-disabled="user != null" type="text" name="city" ng-model="order.shippingCity" placeholder="E.g. Washington D.C." required />
+            </div>
+            <div class="col-md-2" ng-if="(shippingForm.city.$touched || shippingForm.$submitted) && shippingForm.city.$error.required">
+                <alert type="danger"><i class="fa fa-times"></i> Please fill in the city.</alert>
+            </div>
+        </div>
+        <!-- Order confirmation -->
+        <div class="row">
+            <div class="col-md-3 col-md-offset-9">
+                <b>Total: {{ shoppingCart.total | currency }}</b>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-md-offset-9">
+                 <button type="submit" class="btn-lg btn-success">Confirm Order</button>
+            </div>
+        </div>
+    </form>
 </div>
 <div ng-show="shoppingCart.products.length == 0">
     <div class="row">

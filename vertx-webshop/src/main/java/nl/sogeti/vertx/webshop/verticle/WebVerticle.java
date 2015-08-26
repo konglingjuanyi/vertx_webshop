@@ -11,6 +11,7 @@ import nl.sogeti.vertx.webshop.service.CategoryService;
 import nl.sogeti.vertx.webshop.service.OrderService;
 import nl.sogeti.vertx.webshop.service.ProductService;
 import nl.sogeti.vertx.webshop.service.UserService;
+import nl.sogeti.vertx.webshop.util.MongoClientProvider;
 
 public class WebVerticle extends AbstractVerticle {
 	private static final int PORT = 8080;
@@ -26,8 +27,8 @@ public class WebVerticle extends AbstractVerticle {
 	
 	@Override
 	public void start() {
-		MongoClient mongo = MongoClient.createShared(vertx, new JsonObject());
-		registerServices(mongo);
+		MongoClientProvider.setClient(MongoClient.createShared(vertx, new JsonObject()));
+		registerServices();
 		createServer();
 	}
 	@Override
@@ -38,11 +39,11 @@ public class WebVerticle extends AbstractVerticle {
 		}
 	}
 	
-	private void registerServices(MongoClient mongo){
-		productService = new ProductService(mongo);	
-		categoryService = new CategoryService(mongo);
-		orderService = new OrderService(mongo);
-		userService = new UserService(mongo);
+	private void registerServices(){
+		productService = new ProductService();	
+		categoryService = new CategoryService();
+		orderService = new OrderService();
+		userService = new UserService();
 	}
 	
 	private void createServer(){

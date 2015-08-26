@@ -41,5 +41,6 @@ td .form-control {
 }
 
 .nav-item {
+    display: inline-block;
     margin-top: 15px;
 }

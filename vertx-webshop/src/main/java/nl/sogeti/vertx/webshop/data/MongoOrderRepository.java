@@ -6,13 +6,14 @@ import io.vertx.core.Handler;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.mongo.MongoClient;
 import nl.sogeti.vertx.webshop.model.Order;
+import nl.sogeti.vertx.webshop.util.MongoClientProvider;
 
 public class MongoOrderRepository implements IOrderRepository {
 	private final String ORDER = "order";
 	private final MongoClient mongo;
 	
-	public MongoOrderRepository(MongoClient mongo) {
-		this.mongo = mongo;
+	public MongoOrderRepository() {
+		this.mongo = MongoClientProvider.getClient();
 	}
 	
 	@Override
