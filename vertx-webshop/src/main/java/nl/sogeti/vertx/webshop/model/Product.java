@@ -2,7 +2,7 @@ package nl.sogeti.vertx.webshop.model;
 
 import java.math.BigDecimal;
 
-public class Product {
+public class Product implements IValidation{
 	private String name;
 	private BigDecimal price;
 	private String description;
@@ -15,7 +15,19 @@ public class Product {
 		this.description = description;
 		this.category = category;
 	}
-
+	
+	@Override
+	public boolean isValid() {
+		boolean valid = false;
+		if(name != null && !name.isEmpty() &&
+				price != null && price.doubleValue() > 0.0 &&
+				description != null && !description.isEmpty() &&
+				category != null && category.isValid()){
+			valid = true;
+		}
+		return valid;
+	}
+	
 	public String getName() {
 		return name;
 	}

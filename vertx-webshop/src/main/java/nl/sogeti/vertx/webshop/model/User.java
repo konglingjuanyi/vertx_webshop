@@ -1,6 +1,6 @@
 package nl.sogeti.vertx.webshop.model;
 
-public class User {
+public class User implements IValidation {
 	private String userName;
 	private String password;
 	private String fullName;
@@ -15,6 +15,20 @@ public class User {
 		this.address = address;
 		this.city = city;
 		this.email = email;
+	}
+	
+	@Override
+	public boolean isValid() {
+		boolean valid = false;
+		if(userName != null && !userName.isEmpty() && 
+				password != null && !password.isEmpty() &&
+				fullName != null && !fullName.isEmpty() &&
+				address != null && !address.isEmpty() &&
+				city != null && !city.isEmpty() &&
+				email != null && !email.isEmpty()){
+			valid = true;
+		}		
+		return valid;
 	}
 
 	public String getUserName() {

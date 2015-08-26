@@ -4,15 +4,45 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Order {
+public class Order implements IValidation {
 	private BigDecimal total;
 	private List<OrderProduct> orderedProducts;
+	private String shippingAddress;
+	private String shippingCity;
 	
 	public Order(){
 		orderedProducts = new ArrayList<OrderProduct>();
 		calculateTotal();
 	}
 	
+	@Override
+	public boolean isValid(){
+		boolean valid = false;
+		if(total != null && total.doubleValue() > 0.0 && 
+				shippingAddress != null && !shippingAddress.isEmpty() &&
+				shippingCity != null && !shippingCity.isEmpty() &&
+				orderedProducts.size() > 0){
+			valid = true;
+		}
+		return valid;
+	}
+	
+	public String getShippingAddress() {
+		return shippingAddress;
+	}
+
+	public void setShippingAddress(String shippingAddress) {
+		this.shippingAddress = shippingAddress;
+	}
+
+	public String getShippingCity() {
+		return shippingCity;
+	}
+
+	public void setShippingCity(String shippingCity) {
+		this.shippingCity = shippingCity;
+	}
+
 	public BigDecimal getTotal(){
 		return total;
 	}

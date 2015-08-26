@@ -44,6 +44,10 @@ public class UserService {
 	
 	public void addUser(RoutingContext rc){
 		User user = new Gson().fromJson(rc.getBodyAsJson().toString(), User.class);
+		if(!user.isValid()){
+			rc.response().setStatusCode(400).end();
+			return;
+		}
 		repository.findUser(result -> {
 			if(result == null){
 				repository.addUser(addResult ->{

@@ -1,11 +1,11 @@
 function OrderController($scope, $location, $modal, Orders, ShoppingCart){
     $scope.shoppingCart = ShoppingCart;
+    $scope.order;
     
     $scope.placeOrder = function(){
-        var order = {};
-        order.orderedProducts = ShoppingCart.products;
-        order.total = ShoppingCart.total;
-        Orders.save(order, function(){
+        $scope.order.orderedProducts = ShoppingCart.products;
+        $scope.order.total = ShoppingCart.total;
+        Orders.save($scope.order, function(){
                 ShoppingCart.clear();
                 var modalInstance = $modal.open({
                     animation: true,
