@@ -13,9 +13,9 @@ import nl.sogeti.vertx.webshop.service.ProductService;
 import nl.sogeti.vertx.webshop.service.UserService;
 import nl.sogeti.vertx.webshop.util.MongoClientProvider;
 
-public class WebVerticle extends AbstractVerticle {
-	private static final int PORT = 8080;
-	private static final String PATH = "app/webshop";
+public abstract class WebVerticle extends AbstractVerticle {
+	protected int PORT;
+	protected String PATH;
 	private static final String WELCOME_PAGE = "index.html";
 	
 	private ProductService productService;
@@ -24,6 +24,13 @@ public class WebVerticle extends AbstractVerticle {
 	private UserService userService;
 	
 	private HttpServer server;
+	
+	//protected abstract void configurateVerticle();
+	
+	public WebVerticle(int port, String path) {
+		this.PORT = port;
+		this.PATH = path;
+	}
 	
 	@Override
 	public void start() {
@@ -48,19 +55,19 @@ public class WebVerticle extends AbstractVerticle {
 	
 	private void createServer(){
 		server = vertx.createHttpServer();
-		server.requestHandler(createRouter()::accept).listen(PORT);
-		System.out.println("Server is started.");
-	}
-	
-	private Router createRouter(){
 		Router router = Router.router(vertx);
 		router.route().handler(BodyHandler.create());
+		configureBasicRouter(router);
+		server.requestHandler(router::accept).listen(PORT);
+		System.out.println("Server " + this.getClass().getTypeName() + " is started.");
+	}
+	
+	protected void configureBasicRouter(Router router){
 		router.mountSubRouter("/api", createRestRouter());
 		router.get("/").handler(StaticHandler.create().setWebRoot(PATH).setIndexPage(WELCOME_PAGE));
 		router.get("/" + PATH + "/*").handler(StaticHandler.create().setWebRoot(PATH));
-		return router;
 	}
-	
+
 	private Router createRestRouter(){
 		Router router = Router.router(vertx);
 		router.post("/users/login").handler(userService::logIn);

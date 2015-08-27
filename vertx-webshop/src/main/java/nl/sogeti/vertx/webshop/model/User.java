@@ -1,12 +1,19 @@
 package nl.sogeti.vertx.webshop.model;
 
-public class User implements IValidation {
+import io.vertx.core.AsyncResult;
+import io.vertx.core.Handler;
+import io.vertx.core.json.JsonObject;
+import io.vertx.ext.auth.AbstractUser;
+import io.vertx.ext.auth.AuthProvider;
+
+public class User extends AbstractUser implements IValidation {
 	private String userName;
 	private String password;
 	private String fullName;
 	private String address;
 	private String city;
 	private String email;
+	private String role;
 	
 	public User(String userName, String password, String fullName, String address, String city, String email){
 		this.userName = userName;
@@ -15,6 +22,60 @@ public class User implements IValidation {
 		this.address = address;
 		this.city = city;
 		this.email = email;
+	}
+	
+	public User(JsonObject json){
+		this.userName = json.getString("userName");
+		this.password = json.getString("password");
+		this.fullName = json.getString("fullName");
+		this.address = json.getString("address");
+		this.city = json.getString("city");
+		this.email = json.getString("email");
+		this.role = "user";
+	}
+	
+	@Override
+	public JsonObject principal() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setAuthProvider(AuthProvider authProvider) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void doIsPermitted(String permission, Handler<AsyncResult<Boolean>> resultHandler) {
+		resultHandler.handle(new AsyncResult<Boolean>() {
+			@Override
+			public boolean succeeded() {
+				if(!(permission == null || permission.isEmpty()) && !(role == null || role.isEmpty())){
+					return true;
+				}
+				return false;
+			}
+			
+			@Override
+			public Boolean result() {
+				if(permission.equals("role:" + role)){
+					return true;
+				}
+				return false;
+			}
+			
+			@Override
+			public boolean failed() {
+				// TODO Auto-generated method stub
+				return false;
+			}
+			
+			@Override
+			public Throwable cause() {
+				return new Exception("Does not have the required permissions");
+			}
+		});
 	}
 	
 	@Override

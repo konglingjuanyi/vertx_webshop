@@ -42,7 +42,7 @@ public class UserService {
 	}
 	
 	public void addUser(RoutingContext rc){
-		User user = new Gson().fromJson(rc.getBodyAsJson().toString(), User.class);
+		User user = new User(rc.getBodyAsJson());
 		if(!user.isValid()){
 			rc.response().setStatusCode(400).end();
 			return;

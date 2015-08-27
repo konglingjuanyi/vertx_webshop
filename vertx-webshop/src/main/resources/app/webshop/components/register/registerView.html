@@ -11,7 +11,7 @@
                 <div class="col-md-2" ng-if="!available && user.userName.length >= 3">
                     <alert type="danger"><i class="fa fa-times"></i> Oops the username is not available!</alert>
                 </div>
-                <div class="col-md-2" ng-if="registerForm.username.$touched && registerForm.username.$error.required">
+                <div class="col-md-2" ng-if="(registerForm.username.$touched || registerForm.$submitted) && registerForm.username.$error.required">
                     <alert type="danger"><i class="fa fa-times"></i> Don't forget to fill in your username!</alert>
                 </div>
                 <div class="col-md-2" ng-if="available && user.userName.length >= 3">
@@ -25,7 +25,7 @@
                 <div class="col-md-2">
                     <input ng-model="user.password" id="password" name="password" class="form-control" type="password" placeholder="Password" required/>
                 </div>
-                <div class="col-md-2" ng-if="registerForm.password.$touched && registerForm.password.$error.required">
+                <div class="col-md-2" ng-if="(registerForm.password.$touched || registerForm.$submitted) && registerForm.password.$error.required">
                     <alert type="danger"><i class="fa fa-times"></i> Don't forget your password!</alert>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 <div class="col-md-2">
                     <input ng-model="user.fullName" id="name" name="name" class="form-control" type="text" placeholder="Full name" required/>
                 </div>
-                 <div class="col-md-2" ng-if="registerForm.name.$touched && registerForm.name.$error.required">
+                 <div class="col-md-2" ng-if="(registerForm.name.$touched || registerForm.$submitted) && registerForm.name.$error.required">
                     <alert type="danger"><i class="fa fa-times"></i> Don't forget to enter your name!</alert>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                 <div class="col-md-2">
                     <input ng-model="user.address" id="address" name="address" class="form-control" type="text" placeholder="Address" required/>
                 </div>
-                 <div class="col-md-2" ng-if="registerForm.address.$touched && registerForm.address.$error.required">
+                 <div class="col-md-2" ng-if="(registerForm.address.$touched || registerForm.$submitted) && registerForm.address.$error.required">
                     <alert type="danger"><i class="fa fa-times"></i> Don't forget to enter your email!</alert>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                 <div class="col-md-2">
                     <input ng-model="user.city" id="city" name="city" class="form-control" type="text" placeholder="City" required/>
                 </div>
-                 <div class="col-md-2" ng-if="registerForm.city.$touched && registerForm.city.$error.required">
+                 <div class="col-md-2" ng-if="(registerForm.city.$touched || registerForm.$submitted) && registerForm.city.$error.required">
                     <alert type="danger"><i class="fa fa-times"></i> Don't forget to enter your city!</alert>
                 </div>
             </div>
@@ -69,7 +69,7 @@
                 <div class="col-md-2">
                     <input ng-model="user.email" id="email" name="email" class="form-control" type="email" placeholder="Email" required/>
                 </div>
-                 <div class="col-md-2" ng-if="registerForm.email.$touched && registerForm.email.$error.required">
+                 <div class="col-md-2" ng-if="(registerForm.email.$touched) && registerForm.email.$error.required">
                     <alert type="danger"><i class="fa fa-times"></i> Don't forget to enter your email! E.g. "test@test.com"</alert>
                 </div>
             </div>
