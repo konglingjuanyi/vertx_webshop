@@ -7,6 +7,7 @@
 	<!-- Bootstrap, FontAwesome & Styles -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="app/webshop/assets/css/webshop.css" /> 
         
 	</head>
@@ -30,13 +31,26 @@
                 <!-- Nav links -->
                 <li><a href="#/shop">Shop</a></li>  
               </ul>
-              <ul ng-controller="NavbarCtrl" class="nav navbar-nav navbar-right">
-                <div class="btn-group" auto-close="outsideClick" dropdown>
+              <ul ng-controller="NavbarCtrl" class="nav navbar-nav navbar-right row">
+                <div class="col-md-8">
+                    <div ng-if="login.getUser() == null">
+                        <p><a id="navlink" href="#/login">Login</a></p>
+                    </div>
+                    <div class="nav-item" ng-if="login.getUser() != null">
+                        <p>{{login.getUser().fullName}}</p>
+                    </div>
+                </div>    
+                <div class="btn-group col-md-4" auto-close="outsideClick" dropdown>
                   <button id="single-button" class="btn btn-default" dropdown-toggle >
                     <i class="fa fa-shopping-cart fa-2x"></i> <i class="fa fa-caret-down"></i>
                   </button>
                   <ul class="dropdown-menu" role="menu" aria-labelledby="single-button" id="cart-dropdown">
-                    <li><cd-cart></cd-cart></li> 
+                    <li><cd-cart></cd-cart></li>
+                    <div class="row">
+                        <div class="col-md-2 col-md-offset-7">
+                            <a ng-href="#/order" class="btn-lg btn-success">Order</a>
+                        </div>
+                    </div>  
                   </ul>
                 </div>
               </ul>
@@ -61,11 +75,17 @@
 		<!-- Angular Controllers -->
 		<script src="app/webshop/components/shop/shopController.js"></script>
         <script src="app/webshop/components/order/orderController.js"></script>
+        <script src="app/webshop/components/order/orderModalController.js"></script>
+        <script src="app/webshop/components/login/loginController.js"></script>
+        <script src="app/webshop/components/register/registerController.js"></script>
+        <script src="app/webshop/components/register/registerModalController.js"></script>
         <script src="app/webshop/shared/product/productModalController.js"></script>
         <!-- Angular Services -->
         <script src="app/webshop/components/shop/shopService.js"></script>
         <script src="app/webshop/components/order/orderService.js"></script>
+        <script src="app/webshop/components/login/loginService.js"></script>
         <script src="app/webshop/shared/cart/cartService.js"></script>
+        <script src="app/webshop/shared/user/userService.js"></script>
         <!-- Angular Directives -->
         <script src="app/webshop/shared/product/product.js"></script>
         <script src="app/webshop/shared/cart/cart.js"></script>

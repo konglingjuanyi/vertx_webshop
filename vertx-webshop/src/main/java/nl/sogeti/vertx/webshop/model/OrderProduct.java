@@ -1,14 +1,28 @@
 package nl.sogeti.vertx.webshop.model;
 
-public class OrderProduct {
+import java.math.BigDecimal;
+
+public class OrderProduct implements IValidation{
 	private Order order;
 	private Product product;
 	private int amount;
-	private double total;
+	private BigDecimal total;
 	
-	public OrderProduct(Product product, Order order){
+	public OrderProduct(Product product, Order order, int amount){
 		this.product = product;
 		this.order = order;
+		this.amount = amount;
+		calculateTotal();
+	}
+	
+	@Override
+	public boolean isValid() {
+		boolean result = false;
+		if(product != null && product.isValid() &&
+				amount > 0 && total != null && total.doubleValue() > 0.0){
+			result = true;
+		}
+		return result;
 	}
 	
 	public Order getOrder() {
@@ -35,18 +49,11 @@ public class OrderProduct {
 		this.amount = amount;
 	}
 	
-	public double getTotal() {
-		if(total == 0){
-			total = calculateTotal();
-		}
+	public BigDecimal getTotal() {
 		return total;
 	}
 
-	public void setTotal(double total) {
-		this.total = total;
-	}
-
-	private double calculateTotal(){
-		return product.getPrice() * amount;
+	private void calculateTotal(){
+		total = product.getPrice().multiply(new BigDecimal(amount));
 	}
 }

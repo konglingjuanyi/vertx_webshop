@@ -2,7 +2,6 @@ package nl.sogeti.vertx.webshop.service;
 
 import com.google.gson.Gson;
 
-import io.vertx.ext.mongo.MongoClient;
 import io.vertx.ext.web.RoutingContext;
 import nl.sogeti.vertx.webshop.data.IProductsRepository;
 import nl.sogeti.vertx.webshop.data.MongoProductRepository;
@@ -10,8 +9,8 @@ import nl.sogeti.vertx.webshop.data.MongoProductRepository;
 public class ProductService {
 	private IProductsRepository repository;
 		
-	public ProductService(MongoClient mongo){
-		repository = new MongoProductRepository(mongo);
+	public ProductService(){
+		repository = new MongoProductRepository();
 	}
 	
 	public void getProducts(RoutingContext rc){

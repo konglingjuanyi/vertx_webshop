@@ -1,0 +1,1 @@
+{ "_id" : "55def00021ca7e20743908c7", "userName" : "Roy", "password" : "test", "fullName" : "Roy Straub", "address" : "Goudvinkhaag 30", "city" : "Houten", "email" : "roy@gmail.com", "cachedPermissions" : [ ], "role":"admin" }

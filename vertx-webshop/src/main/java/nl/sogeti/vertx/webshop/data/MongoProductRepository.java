@@ -1,21 +1,20 @@
 package nl.sogeti.vertx.webshop.data;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import com.google.gson.Gson;
 
 import io.vertx.core.Handler;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.mongo.MongoClient;
 import nl.sogeti.vertx.webshop.model.Product;
+import nl.sogeti.vertx.webshop.util.JsonConverter;
+import nl.sogeti.vertx.webshop.util.MongoClientProvider;
 
 public class MongoProductRepository implements IProductsRepository {
 	private final MongoClient mongo;
 	private final String PRODUCT = "product";
 	
-	public MongoProductRepository(MongoClient mongo){
-		this.mongo = mongo;
+	public MongoProductRepository(){
+		this.mongo = MongoClientProvider.getClient();
 	}
 	
 	@Override
@@ -35,11 +34,7 @@ public class MongoProductRepository implements IProductsRepository {
 	        if (result.failed()) {
 	          //todo: error handling
 	        }
-	        List<Product> lookupResults = new ArrayList<Product>();
-	        for (JsonObject o : result.result()) {
-	          Product product = new Gson().fromJson(o.toString(), Product.class);
-	          lookupResults.add(product);
-	        }       
+	        List<Product> lookupResults = JsonConverter.fromJsonList(result.result(), Product.class);
 	        handler.handle(lookupResults);
 		});
 	}

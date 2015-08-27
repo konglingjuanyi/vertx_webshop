@@ -1,0 +1,46 @@
+<div>
+    <!-- todo: login impl. -->
+    <div class="row">
+        <div class="col-md-4 col-md-offset-2">
+            <h3>Login</h3>
+            <form novalidate name="loginForm" class="css-form" ng-submit="login()">
+                <fieldset>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <label for="username">Username</label>
+                        </div>  
+                    </div>    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input class="form-control" ng-model="username" type="text" id="username" name="username" placeholder="Username" required />
+                        </div>    
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <label for="password">Password</label>
+                        </div>  
+                    </div>    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input class="form-control" ng-model="password" type="password" id="password" name="password" placeholder="Password" required />
+                        </div>    
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button ng-disabled="loginForm.$invalid" class="btn-lg btn-success" type="submit">Log in</button>
+                        </div>
+                    </div>
+                    <div ng-show="loginForm.$submitted && !loginSucceeded" class="row">
+                        <div class="col-md-10">
+                            <alert type="danger"><i class="fa fa-times"></i> Oops.. Either the username or password was incorrect.</alert>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="col-md-4">
+            <h3>Register an account</h3>
+            <a class="btn-lg btn-primary" href="#/register">Register</a>
+        </div> 
+     </div>
+</div>

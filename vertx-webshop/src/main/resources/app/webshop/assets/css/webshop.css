@@ -1,5 +1,5 @@
-h1 {
-	color: red;
+h3 {
+	color: #285dab;
 }
 
 .dropdown-menu#cart-dropdown {
@@ -11,4 +11,36 @@ a.btn-lg {
 }
 a.btn {
     display: inline-block;
+}
+
+#navlink {
+    display: inline-block;
+    margin-top: 15px;
+}
+
+.row {
+    margin-bottom: 5px;
+}
+
+td .form-control {
+    width: 80px;
+}
+
+.navbar-default a.navbar-brand{
+    font-family: 'Indie Flower', cursive;
+    font-size: 16pt;
+    color: #FF4500;
+}
+
+.error{
+    background-color: #FA787E;
+}
+
+.alert{
+    padding: 6px 12px;
+}
+
+.nav-item {
+    display: inline-block;
+    margin-top: 15px;
 }
