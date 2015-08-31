@@ -3,11 +3,11 @@ package nl.sogeti.vertx.webshop.service;
 import com.google.gson.Gson;
 
 import io.vertx.ext.web.RoutingContext;
-import nl.sogeti.vertx.webshop.data.IProductsRepository;
+import nl.sogeti.vertx.webshop.data.IProductRepository;
 import nl.sogeti.vertx.webshop.data.MongoProductRepository;
 
 public class ProductService {
-	private IProductsRepository repository;
+	private IProductRepository repository;
 		
 	public ProductService(){
 		repository = new MongoProductRepository();

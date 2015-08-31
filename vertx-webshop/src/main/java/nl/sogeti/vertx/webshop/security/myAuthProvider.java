@@ -7,7 +7,7 @@ import io.vertx.ext.auth.AuthProvider;
 import io.vertx.ext.auth.User;
 import nl.sogeti.vertx.webshop.data.MongoUserRepository;
 
-public class myAuthProvider implements AuthProvider {
+public class MyAuthProvider implements AuthProvider {
 	private final MongoUserRepository repository = new MongoUserRepository();
 	
 	@Override

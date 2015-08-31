@@ -3,14 +3,12 @@ package nl.sogeti.vertx.webshop.model;
 import java.math.BigDecimal;
 
 public class OrderProduct implements IValidation{
-	private Order order;
 	private Product product;
 	private int amount;
 	private BigDecimal total;
 	
-	public OrderProduct(Product product, Order order, int amount){
+	public OrderProduct(Product product, int amount){
 		this.product = product;
-		this.order = order;
 		this.amount = amount;
 		calculateTotal();
 	}
@@ -25,14 +23,6 @@ public class OrderProduct implements IValidation{
 		return result;
 	}
 	
-	public Order getOrder() {
-		return order;
-	}
-
-	public void setOrder(Order order) {
-		this.order = order;
-	}
-
 	public Product getProduct() {
 		return product;
 	}
@@ -43,10 +33,6 @@ public class OrderProduct implements IValidation{
 
 	public int getAmount() {
 		return amount;
-	}
-
-	public void setAmount(int amount) {
-		this.amount = amount;
 	}
 	
 	public BigDecimal getTotal() {

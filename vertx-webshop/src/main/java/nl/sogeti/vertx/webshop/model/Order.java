@@ -10,11 +10,19 @@ public class Order implements IValidation {
 	private String shippingAddress;
 	private String shippingCity;
 	
-	public Order(){
-		orderedProducts = new ArrayList<OrderProduct>();
+	public Order(String shippingAddress, String shippingCity, List<OrderProduct> orderedProducts){
+		this.shippingAddress = shippingAddress;
+		this.shippingCity = shippingCity;
+		this.orderedProducts = orderedProducts;
 		calculateTotal();
 	}
 	
+	public Order(String shippingAddress, String shippingCity){
+		this.shippingAddress = shippingAddress;
+		this.shippingCity = shippingCity;
+		orderedProducts = new ArrayList<OrderProduct>();
+	}
+
 	@Override
 	public boolean isValid(){
 		boolean valid = false;
@@ -50,12 +58,23 @@ public class Order implements IValidation {
 	public List<OrderProduct> getOrderedProducts() {
 		return orderedProducts;
 	}
+	
+	public boolean addOrderedProduct(OrderProduct orderProduct){
+		if(orderProduct == null || !orderProduct.isValid()){
+			return false;
+		}
+		if(!orderedProducts.contains(orderProduct)){
+			orderedProducts.add(orderProduct);
+		}
+		calculateTotal();
+		return true;
+	}
 
 	private void calculateTotal(){
 		BigDecimal total = new BigDecimal(0.0);
 		total.setScale(2, BigDecimal.ROUND_HALF_UP);
 		for(OrderProduct orderedProduct : orderedProducts){
-			total = total.multiply(orderedProduct.getTotal());
+			total = total.add(orderedProduct.getTotal());
 		}
 		this.total = total;
 	}

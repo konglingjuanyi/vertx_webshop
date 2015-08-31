@@ -8,8 +8,15 @@ function OrderController($scope, $location, $modal, Orders, ShoppingCart, Login)
     }
     
     $scope.placeOrder = function(){
-        $scope.order.orderedProducts = ShoppingCart.products;
-        $scope.order.total = ShoppingCart.total;
+        var orderedProducts = [];
+        //Only pass the product id's
+        for(index = 0; index < ShoppingCart.products.length; index++){
+            var orderedProduct = {};
+            orderedProduct.amount = ShoppingCart.products[index].amount;
+            orderedProduct.productId = ShoppingCart.products[index].product._id;
+            orderedProducts.push(orderedProduct);
+        }
+        $scope.order.orderedProducts = orderedProducts;
         Orders.save($scope.order, function(){
                 ShoppingCart.clear();
                 var modalInstance = $modal.open({

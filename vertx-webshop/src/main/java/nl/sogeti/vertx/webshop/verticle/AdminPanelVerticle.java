@@ -9,7 +9,7 @@ import io.vertx.ext.web.handler.ErrorHandler;
 import io.vertx.ext.web.handler.SessionHandler;
 import io.vertx.ext.web.handler.UserSessionHandler;
 import io.vertx.ext.web.sstore.LocalSessionStore;
-import nl.sogeti.vertx.webshop.security.myAuthProvider;
+import nl.sogeti.vertx.webshop.security.MyAuthProvider;
 
 public class AdminPanelVerticle extends WebVerticle {
 	public AdminPanelVerticle(int port, String path) {
@@ -18,7 +18,7 @@ public class AdminPanelVerticle extends WebVerticle {
 	
 	@Override
 	protected void configureBasicRouter(Router router) {
-		AuthProvider authProvider = new myAuthProvider();
+		AuthProvider authProvider = new MyAuthProvider();
 		router.route().handler(CookieHandler.create());
 		router.route().handler(SessionHandler.create(LocalSessionStore.create(vertx, "sessions", 1800000)));
 		router.route().handler(UserSessionHandler.create(authProvider));
