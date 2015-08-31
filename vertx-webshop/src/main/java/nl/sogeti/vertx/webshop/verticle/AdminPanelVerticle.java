@@ -27,4 +27,11 @@ public class AdminPanelVerticle extends WebVerticle {
 		router.route("/").handler(basicAuthHandler).failureHandler(ErrorHandler.create());
 		super.configureBasicRouter(router);
 	}
+	
+	@Override
+	protected Router createRestRouter(){
+		Router router = super.createRestRouter();
+		router.delete("/products/:id").handler(productService::deleteProduct);
+		return router;
+	}
 }

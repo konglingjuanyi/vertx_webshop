@@ -1,7 +1,7 @@
 package nl.sogeti.vertx.webshop.model;
 
 public class Category implements IValidation {
-	private long id;	
+	private String _id;
 	private String name;
 	
 	public Category(String name){
@@ -24,12 +24,8 @@ public class Category implements IValidation {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public long getId() {
-		return id;
-	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
+	public String get_id() {
+		return _id;
+	}	
 }

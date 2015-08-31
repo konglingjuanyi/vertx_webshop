@@ -6,9 +6,9 @@ public class Product implements IValidation{
 	private String name;
 	private BigDecimal price;
 	private String description;
-	private long id;
 	private Category category;
-	
+	private String _id;
+
 	public Product(String name, double price, String description, Category category){
 		this.name = name;
 		setPrice(price);
@@ -61,12 +61,8 @@ public class Product implements IValidation{
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
+	
+	public String get_id() {
+		return _id;
 	}
 }

@@ -18,15 +18,13 @@ public abstract class WebVerticle extends AbstractVerticle {
 	protected String PATH;
 	private static final String WELCOME_PAGE = "index.html";
 	
-	private ProductService productService;
-	private CategoryService categoryService;
-	private OrderService orderService;
-	private UserService userService;
+	protected ProductService productService;
+	protected CategoryService categoryService;
+	protected OrderService orderService;
+	protected UserService userService;
 	
 	private HttpServer server;
-	
-	//protected abstract void configurateVerticle();
-	
+		
 	public WebVerticle(int port, String path) {
 		this.PORT = port;
 		this.PATH = path;
@@ -68,7 +66,7 @@ public abstract class WebVerticle extends AbstractVerticle {
 		router.get("/" + PATH + "/*").handler(StaticHandler.create().setWebRoot(PATH));
 	}
 
-	private Router createRestRouter(){
+	protected Router createRestRouter(){
 		Router router = Router.router(vertx);
 		router.post("/users/login").handler(userService::logIn);
 		router.get("/users/*").handler(userService::findUser);

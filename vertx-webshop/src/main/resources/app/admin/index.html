@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>Pet Supplies</title>
+		
+	<!-- Bootstrap, FontAwesome & Styles -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+        
+	</head>
+	<body ng-app="Admin">
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="#/">Pet Supplies - Admin</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav">
+                    <!-- Nav links -->
+                    <li><a href="#/products">Products</a></li>  
+                  </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div ng-view></div>
+        </div>
+        
+        <!-- Angular -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-resource.js"></script>
+    	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script>
+        <!-- Angular i18n -->
+        <script src="https://code.angularjs.org/1.4.3/i18n/angular-locale_nl-nl.js"></script>
+    	<!-- Angular Routing -->
+		<script src="app/admin/admin.js"></script>
+		<!-- Angular UI -->
+		<script src="app/admin/libs/ui-bootstrap-tpls-0.13.3.js"></script>
+        <!-- Angular Controllers -->
+        <script src="app/admin/components/product/productController.js"></script>
+        <!-- Angular Services -->
+        <script src="app/admin/components/product/productService.js"></script>
+    </body>
+</html>

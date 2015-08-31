@@ -28,6 +28,19 @@ public class MongoProductRepository implements IProductsRepository {
 		findProducts(handler, query);
 	}
 	
+	@Override
+	public void deleteProduct(Handler<Boolean> handler, String id) {
+		JsonObject query = new JsonObject().put("_id", id);
+		mongo.removeOne(PRODUCT, query, result -> {
+			if(result.succeeded()){
+				handler.handle(new Boolean(true));
+			}
+			else{
+				handler.handle(new Boolean(false));
+			}
+		});
+	}
+	
 	private void findProducts(Handler<List<Product>> handler, JsonObject query){
 		mongo.find(this.PRODUCT, query, result -> {
 	        // error handling

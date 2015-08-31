@@ -29,4 +29,16 @@ public class ProductService {
 		}
 		
 	}
+	
+	public void deleteProduct(RoutingContext rc){
+		String id = rc.request().getParam("id");
+		repository.deleteProduct(result -> {
+			if(result == true){
+				rc.response().setStatusCode(200).end();
+			}
+			else{
+				rc.response().setStatusCode(404).end();
+			}
+		}, id);
+	}
 }
