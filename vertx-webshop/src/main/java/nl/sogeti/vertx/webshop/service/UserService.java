@@ -7,6 +7,7 @@ import io.vertx.ext.web.RoutingContext;
 import nl.sogeti.vertx.webshop.data.IUserRepository;
 import nl.sogeti.vertx.webshop.data.MongoUserRepository;
 import nl.sogeti.vertx.webshop.model.User;
+import nl.sogeti.vertx.webshop.model.UserData;
 
 public class UserService {
 	private IUserRepository repository;
@@ -26,8 +27,9 @@ public class UserService {
 		repository.findUser(res -> {
 			if(res != null){
 				if(res.getPassword().equals(password)){
-					//Correctly authenticated, return user object
-					rc.response().end(new Gson().toJson(res));
+					//Correctly authenticated, return user object, without password
+					UserData responseData = new UserData(res);
+					rc.response().end(new Gson().toJson(responseData));
 				}
 				else{
 					//Wrong password for an existing user, return error code
