@@ -71,7 +71,8 @@ public class UserService {
 		String userName = rc.request().getParam("username");
 		repository.findUser(result -> {
 			if(result != null){
-				rc.response().end(new Gson().toJson(result));
+				UserData responseData = new UserData(result);
+				rc.response().end(new Gson().toJson(responseData));
 			}
 			else{
 				rc.response().setStatusCode(404).end();

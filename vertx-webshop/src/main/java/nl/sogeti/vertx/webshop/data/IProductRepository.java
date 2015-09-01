@@ -11,4 +11,5 @@ public interface IProductRepository {
 	void getProducts(Handler<List<Product>> handler, String[] ids);
 	void getProduct(Handler<Product> handler, String id);
 	void deleteProduct(Handler<Boolean> handler, String id);
+	void saveProduct(Handler<String> handler, Product product);
 }

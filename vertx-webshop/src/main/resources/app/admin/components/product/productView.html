@@ -1,7 +1,10 @@
 <div>
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-5 col-md-offset-3">
             <h1>Webshop products</h1>
+        </div>
+        <div class="col-md-2">
+            <a class="btn btn-success right-input" ng-href="#/newproduct"><i class="fa fa-plus"></i> Create</a>
         </div>
     </div>
     <div class="row">
@@ -18,7 +21,9 @@
                     <tr ng-repeat="product in products">
                         <td>{{ product._id }}</td>
                         <td>{{ product.name }}</td>
-                        <td><button class="btn btn-danger" type="button" ng-click="delete(product._id)"><i class="fa fa-trash"></i></button></td>
+                        <td>
+                            <button class="btn btn-danger" type="button" ng-click="delete(product._id)"><i class="fa fa-trash"></i></button>
+                        </td>
                     </tr>
                </tbody>
             </table>

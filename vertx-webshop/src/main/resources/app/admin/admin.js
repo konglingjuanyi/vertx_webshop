@@ -5,5 +5,9 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'app/admin/components/product/productView.html',
             controller: ProductController
         }).
+        when('/newproduct', {
+            templateUrl: 'app/admin/components/product/productCreationView.html',
+            controller: ProductController
+        }).
         otherwise({redirectTo: '/products'});
 }]);

@@ -1,0 +1,71 @@
+<div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h1>Create a new product</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <form name="productCreationForm" novalidate ng-submit="save()">
+                <fieldset>
+                    <div class="row">
+                        <div class="col-md-12">
+                             <label>Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                             <input name="name" class="form-control" type=text ng-model="product.name" placeholder="E.g. Extra special nom nom food" required />
+                        </div>
+                        <div class="col-md-2" ng-if="(productCreationForm.name.$touched || productCreationForm.$submitted) && productCreationForm.name.$error.required">
+                            <alert type="danger"><i class="fa fa-times"></i> Don't forget to fill in the name!</alert>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                             <label>Description</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <textarea name="description" class="form-control" rows="4" cols="50" ng-model="product.description" placeholder="E.g. One of the best products around" required ></textarea>
+                        </div>
+                        <div class="col-md-2" ng-if="(productCreationForm.description.$touched || productCreationForm.$submitted) && productCreationForm.description.$error.required">
+                            <alert type="danger"><i class="fa fa-times"></i> Don't forget to fill in the description!</alert>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                             <label>Price</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                             <input name="price" class="form-control" type="number" ng-model="product.price" placeholder="E.g. 5,99" required />
+                        </div>
+                        <div class="col-md-2" ng-if="(productCreationForm.price.$touched || productCreationForm.$submitted) && productCreationForm.price.$error.required">
+                            <alert type="danger"><i class="fa fa-times"></i> Don't forget to fill in the price!</alert>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                             <label>Category</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <select name="category" class="form-control" id="mySelect"
+                                  ng-options="category.name for category in categories"
+                                  ng-model="selectedCategory" required>
+                            </select>
+                        </div>
+                        <div class="col-md-2" ng-if="(productCreationForm.category.$touched || productCreationForm.$submitted) && productCreationForm.category.$error.required">
+                            <alert type="danger"><i class="fa fa-times"></i> Don't forget to select the category!</alert>
+                        </div>
+                    </div>
+                    <button ng-disabled="productCreationForm.$invalid || selectedCategory == null" class="btn-lg btn-success" type="submit"><i class="fa fa-check"></i> Save</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

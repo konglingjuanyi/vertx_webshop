@@ -23,7 +23,7 @@ a.btn {
 }
 
 td .form-control {
-    width: 80px;
+    max-width: 80px;
 }
 
 .navbar-default a.navbar-brand{

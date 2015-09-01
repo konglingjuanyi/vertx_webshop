@@ -2,6 +2,8 @@ package nl.sogeti.vertx.webshop.data;
 
 import java.util.List;
 
+import com.google.gson.Gson;
+
 import io.vertx.core.Handler;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.mongo.MongoClient;
@@ -57,6 +59,19 @@ public class MongoProductRepository implements IProductRepository {
 			}
 			else{
 				handler.handle(new Boolean(false));
+			}
+		});
+	}
+	
+	@Override
+	public void saveProduct(Handler<String> handler, Product product) {
+		JsonObject document = new JsonObject(new Gson().toJson(product));
+		mongo.insert(PRODUCT, document, result -> {
+			if(result.result() != null){
+				handler.handle(result.result());
+			}
+			else{
+				result.cause().printStackTrace();
 			}
 		});
 	}
